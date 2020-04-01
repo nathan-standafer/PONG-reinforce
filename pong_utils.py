@@ -59,8 +59,9 @@ def play(env, policy, time=2000, preprocess=None, nrand=5):
     # perform nrand random steps in the beginning
     for _ in range(nrand):
         frame1, reward1, is_done, _ = env.step(np.random.choice([RIGHT,LEFT]))
+        env.render()
         frame2, reward2, is_done, _ = env.step(0)
-    
+        env.render()
     anim_frames = []
     
     for _ in range(time):
@@ -71,8 +72,9 @@ def play(env, policy, time=2000, preprocess=None, nrand=5):
         # RIGHT = 4, LEFT = 5
         action = RIGHT if rand.random() < prob else LEFT
         frame1, _, is_done, _ = env.step(action)
+        env.render()
         frame2, _, is_done, _ = env.step(0)
-
+        env.render()
         if preprocess is None:
             anim_frames.append(frame1)
         else:
@@ -83,7 +85,7 @@ def play(env, policy, time=2000, preprocess=None, nrand=5):
     
     env.close()
     
-    animate_frames(anim_frames)
+    #animate_frames(anim_frames)
     return 
 
 
